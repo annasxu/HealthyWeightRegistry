@@ -1,0 +1,38 @@
+---
+title: "weight"
+author: "Junyao Shi (js3453)"
+date: "January 29, 2018"
+output: pdf_document
+---
+
+```{r}
+setwd(getwd())
+weight <- read.csv("weight.csv")
+attach(weight)
+names(weight)
+```
+
+
+#turn weight in pounds to kilograms
+
+```{r}
+pound_to_kilo <- function(w,wu){
+    w[which(wu == "Pounds")] <- 0.45359237 * w[which(wu == "Pounds")]
+    w
+}
+```
+
+
+#run once
+```{r}
+Weight.1_1 <- pound_to_kilo(Weight.1_1, Weight.2_1)
+WeighHighest.1_1 <- pound_to_kilo(WeighHighest.1_1, WeighHighest.2_1)
+WeightCurrent.1_1 <- pound_to_kilo(WeightCurrent.1_1, WeightCurrent.2_1)
+WeightHighest.1_1 <- pound_to_kilo(WeightHighest.1_1, WeightHighest.2_1)
+WeightLowest.1_1 <- pound_to_kilo(WeightLowest.1_1, WeightLowest.2_1)
+diff.hi.lo <- WeightHighest.1_1-WeightLowest.1_1
+hist(diff.hi.lo, seq(-100, 250, feq=1), ylim=c(0, 180))
+length(which(abs(diff.hi.lo) < 10))
+#cbind(WeightHighest.1_1, WeightLowest.1_1)
+```
+
